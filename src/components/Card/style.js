@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
-export const CardContainer = styled.div`
+export const Card = styled.div`
   color: #fff;
   margin: 1rem auto;
-  padding: .4rem;
+  padding: 1rem 0.6rem;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 20rem;
+  width: 18rem;
   height: 12rem;
   background-color: ${(props) => props.color};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -37,7 +37,6 @@ export const CardHeaderText = styled.p`
 export const CardValueContainer = styled.div`
   margin: .4rem;
   padding: 0 .6rem;
-  /* width: 6rem; */
   height: 4rem;
   display: flex;
   justify-content: center;
