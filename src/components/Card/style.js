@@ -26,16 +26,17 @@ export const CardHeaderWrapper = styled.div`
 
 export const CardHeaderTextWrapper = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   `
 
-export const CardHeaderText = styled.p`
+export const CardHeaderText = styled.div`
   font-size: 1.6rem;
   margin: 0 0.4rem;
+  cursor: ${(props) => props.cursor};
   `
 
 export const CardValueContainer = styled.div`
-  margin: .4rem;
+  margin: 1rem;
   padding: 0 .6rem;
   height: 4rem;
   display: flex;
@@ -59,5 +60,9 @@ export const CardInfoWrapper = styled.p`
 `
 
 export const CardText = styled.p`
-  margin: 0;
+  margin: 0.1rem;
   `
+
+// export const Bookmarker = styled.input`
+// margin: 0.1rem;
+// `

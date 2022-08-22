@@ -1,7 +1,15 @@
 import React from 'react'
 import * as S from './style'
+import { FaStar, FaRegStar } from 'react-icons/fa'
 
-function Card({ sidoName, stationName, fineDust, dataTime, fineDustLevel }) {
+function Card({
+  sidoName,
+  stationName,
+  fineDust,
+  dataTime,
+  fineDustLevel,
+  bookmark,
+}) {
   return (
     <S.Card color={fineDustLevel.color}>
       <S.CardHeaderWrapper>
@@ -9,7 +17,10 @@ function Card({ sidoName, stationName, fineDust, dataTime, fineDustLevel }) {
           <S.CardHeaderText>{stationName}</S.CardHeaderText>
           <S.CardText>{sidoName}</S.CardText>
         </S.CardHeaderTextWrapper>
-        <S.CardHeaderText>☆</S.CardHeaderText>
+        {}
+        <S.CardHeaderText cursor="pointer">
+          {bookmark === null ? '' : bookmark ? <FaStar /> : <FaRegStar />}
+        </S.CardHeaderText>
       </S.CardHeaderWrapper>
       <S.CardValueContainer>
         <S.CardValue color={fineDustLevel.color}>
