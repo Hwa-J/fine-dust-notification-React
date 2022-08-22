@@ -9,19 +9,19 @@ function AirInfo(props) {
   if (loading)
     return (
       <S.ContentBox>
-        <div>로딩중...</div>
+        <S.ContentBoxInner>로딩중...</S.ContentBoxInner>
       </S.ContentBox>
     )
   if (error)
     return (
       <S.ContentBox>
-        <div>에러 발생</div>
+        <S.ContentBoxInner>에러 발생</S.ContentBoxInner>
       </S.ContentBox>
     )
   if (!props.data)
     return (
       <S.ContentBox>
-        <div>지역을 선택하세요</div>
+        <S.ContentBoxInner>{props.text}</S.ContentBoxInner>
       </S.ContentBox>
     )
   return (
@@ -47,6 +47,7 @@ function AirInfo(props) {
               fineDust={db.pm10Value}
               fineDustLevel={fineDustLevel}
               dataTime={db.dataTime}
+              bookmark={props.bookmark}
             />
           )
         })}

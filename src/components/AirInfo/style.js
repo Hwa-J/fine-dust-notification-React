@@ -20,3 +20,8 @@ export const ContentBox = styled.div`
     display:none;
   }
 `
+
+export const ContentBoxInner = styled.div`
+  margin: auto;
+
+`
