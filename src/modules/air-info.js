@@ -1,9 +1,9 @@
 import axios from "axios";
-import qs from 'qs'
+// import qs from 'qs'
 
-axios.defaults.paramsSerializer = params => {
-  return qs.stringify(params, { encode: false })
-}
+// axios.defaults.paramsSerializer = params => {
+//   return qs.stringify(params, { encode: false })
+// }
 
 const { VITE_SERVICE_KEY } = import.meta.env
 const END_POINT = '/api/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty'
