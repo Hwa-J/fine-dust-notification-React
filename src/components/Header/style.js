@@ -6,4 +6,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  height: 2.8rem;
 `
