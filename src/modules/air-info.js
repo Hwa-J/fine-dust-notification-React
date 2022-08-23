@@ -7,6 +7,7 @@ axios.defaults.paramsSerializer = params => {
 
 const { VITE_SERVICE_KEY } = import.meta.env
 const END_POINT = '/api/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty'
+
 const getParameters = {
   serviceKey: VITE_SERVICE_KEY,
   returnType:'json',
@@ -64,7 +65,7 @@ export default function airInfo(state = initialState, action) {
     case GET_AIR_INFO_ERROR:
       return {
         loading: false,
-        data: null,
+        data: [],
         error: action.error
       }
     default:
