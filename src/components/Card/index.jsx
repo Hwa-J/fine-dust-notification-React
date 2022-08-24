@@ -12,6 +12,7 @@ function Card({
   star,
   bookmark,
   bookmarkHandler,
+  bookmarkRemoveHandler,
 }) {
   return (
     <S.Card color={fineDustLevel.color}>
@@ -23,14 +24,20 @@ function Card({
         {!star ? (
           ''
         ) : (
-          <S.CardHeaderText
-            cursor="pointer"
-            onClick={() => {
-              bookmarkHandler(data)
-              console.log(data)
-            }}
-          >
-            {bookmark ? <FaStar /> : <FaRegStar />}
+          <S.CardHeaderText cursor="pointer">
+            {bookmark ? (
+              <FaStar
+                onClick={() => {
+                  bookmarkRemoveHandler(data)
+                }}
+              />
+            ) : (
+              <FaRegStar
+                onClick={() => {
+                  bookmarkHandler(data)
+                }}
+              />
+            )}
           </S.CardHeaderText>
         )}
       </S.CardHeaderWrapper>
