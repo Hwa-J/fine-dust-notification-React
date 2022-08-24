@@ -59,10 +59,6 @@ export const CardInfoWrapper = styled.p`
   margin: 0;
 `
 
-export const CardText = styled.p`
+export const CardText = styled.span`
   margin: 0.1rem;
   `
-
-// export const Bookmarker = styled.input`
-// margin: 0.1rem;
-// `
