@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Card = styled.div`
+export const Card = styled.li`
   color: #fff;
   margin: 1rem auto;
   padding: 1rem 0.6rem;
