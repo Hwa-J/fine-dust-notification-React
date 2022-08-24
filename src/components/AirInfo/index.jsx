@@ -49,6 +49,7 @@ function AirInfo(props) {
               bookmark={db.isBookmarked}
               star={props.star}
               bookmarkHandler={props.bookmarkHandler}
+              bookmarkRemoveHandler={props.bookmarkRemoveHandler}
             />
           )
         })}
