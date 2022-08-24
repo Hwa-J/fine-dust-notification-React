@@ -21,16 +21,21 @@ const GET_AIR_INFO = 'air-info/GET_AIR_INFO'
 const GET_AIR_INFO_SUCCESS = 'air-info/GET_AIR_INFO_SUCCESS'
 const GET_AIR_INFO_ERROR = 'air-info/GET_AIR_INFO_ERROR'
 
+const GET_BOOKMARKED_AIR_INFO = 'air-info/GET_BOOKMARKED_AIR_INFO'
+const REMOVE_BOOKMARKED_AIR_INFO = 'air-info/REMOVE_BOOKMARKED_AIR_INFO'
+
 // 액션 생성 함수
 export const getAirInfo = (sidoName = '전국') => async (dispatch, getState) => {
   dispatch({ type: GET_AIR_INFO }) // 요청이 시작됨
   try {
-    const response = await axios.get(
+    const { data } = await axios.get(
       END_POINT,
       { params: {...getParameters, sidoName} }); // API 호출
+    const airInfo = data.response.body.items.map(item => {
+      return (item = { ...item, isBookmarked: false })})
     dispatch({ 
       type: GET_AIR_INFO_SUCCESS, 
-      payload: {data: response.data.response.body.items} 
+      payload: {data: airInfo} 
 }) // 성공
   } catch (e) {
     dispatch({ 
@@ -44,7 +49,8 @@ export const getAirInfo = (sidoName = '전국') => async (dispatch, getState) =>
 const initialState = {
   loading: false,
   data: [],
-  error: null
+  error: null,
+  bookmarkedAirInfo: []
 }
 
 // 리듀서 선언
@@ -54,20 +60,50 @@ export default function airInfo(state = initialState, action) {
       return {
         loading: true,
         data: [],
-        error: null
+        error: null,
+        bookmarkedAirInfo: state.bookmarkedAirInfo
       }
     case GET_AIR_INFO_SUCCESS:
       return {
         loading: false,
         data: action.payload.data,
-        error: null
+        error: null,
+        bookmarkedAirInfo: state.bookmarkedAirInfo
       }
     case GET_AIR_INFO_ERROR:
       return {
         loading: false,
         data: [],
-        error: action.error
+        error: action.error,
+        bookmarkedAirInfo: state.bookmarkedAirInfo
       }
+      case GET_BOOKMARKED_AIR_INFO :
+        state.bookmarkedAirInfo.push(
+          { ...action.payload, isBookmarked: true })
+        return {
+          loading: false,
+          data: state.data.map(i => { 
+            return i.stationName === action.payload.stationName 
+            ? {...i, isBookmarked: true} 
+            : i
+          }),
+          error: null,
+          bookmarkedAirInfo: state.bookmarkedAirInfo
+        }
+        case REMOVE_BOOKMARKED_AIR_INFO :
+          let removeItem = { ...action.payload, isBookmarked: false }
+        return {
+          loading: false,
+          data: state.data.map(i => {
+            return i.stationName === action.payload.stationName 
+            ? {...i, isBookmarked: false}
+            : i
+          }),
+          error: null,
+          bookmarkedAirInfo: state.bookmarkedAirInfo.filter(item => {
+            return item.stationName !== removeItem.stationName
+          })
+        }
     default:
       return state
   }
