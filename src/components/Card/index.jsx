@@ -3,12 +3,15 @@ import * as S from './style'
 import { FaStar, FaRegStar } from 'react-icons/fa'
 
 function Card({
+  data,
   sidoName,
   stationName,
   fineDust,
   dataTime,
   fineDustLevel,
+  star,
   bookmark,
+  bookmarkHandler,
 }) {
   return (
     <S.Card color={fineDustLevel.color}>
@@ -17,10 +20,19 @@ function Card({
           <S.CardHeaderText>{stationName}</S.CardHeaderText>
           <S.CardText>{sidoName}</S.CardText>
         </S.CardHeaderTextWrapper>
-        {}
-        <S.CardHeaderText cursor="pointer">
-          {bookmark === null ? '' : bookmark ? <FaStar /> : <FaRegStar />}
-        </S.CardHeaderText>
+        {!star ? (
+          ''
+        ) : (
+          <S.CardHeaderText
+            cursor="pointer"
+            onClick={() => {
+              bookmarkHandler(data)
+              console.log(data)
+            }}
+          >
+            {bookmark ? <FaStar /> : <FaRegStar />}
+          </S.CardHeaderText>
+        )}
       </S.CardHeaderWrapper>
       <S.CardValueContainer>
         <S.CardValue color={fineDustLevel.color}>

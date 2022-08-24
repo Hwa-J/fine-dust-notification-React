@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid'
 import { useSelector } from 'react-redux'
 import Card from '../Card'
 import * as S from './style'
@@ -18,7 +17,7 @@ function AirInfo(props) {
         <S.ContentBoxInner>에러 발생</S.ContentBoxInner>
       </S.ContentBox>
     )
-  if (!props.data)
+  if (props.data.length < 0)
     return (
       <S.ContentBox>
         <S.ContentBoxInner>{props.text}</S.ContentBoxInner>
@@ -28,7 +27,6 @@ function AirInfo(props) {
     <S.ContentBox>
       <S.CardContainer>
         {props.data.map((db) => {
-          let id = nanoid()
           let fineDustLevel =
             Number(db.pm10Value) <= 30
               ? { level: '좋음', color: '#87CEEB ' }
@@ -41,13 +39,16 @@ function AirInfo(props) {
               : { level: '알수없음', color: '#C0C0C0' }
           return (
             <Card
-              key={id}
+              key={db.stationName}
+              data={db}
               sidoName={db.sidoName}
               stationName={db.stationName}
               fineDust={db.pm10Value}
               fineDustLevel={fineDustLevel}
               dataTime={db.dataTime}
-              bookmark={props.bookmark}
+              bookmark={db.isBookmarked}
+              star={props.star}
+              bookmarkHandler={props.bookmarkHandler}
             />
           )
         })}
