@@ -1,6 +1,8 @@
 # fine-dust-notification-React
 
 ## 🤧 미세먼지 알리미
+![스크린샷 2023-01-09 오후 4 03 11](https://user-images.githubusercontent.com/99096272/211255562-6269909b-d3d3-4d28-a620-781790b3bdd2.png)
+
 
 https://fine-dust-notification-react-hwa-j.vercel.app/
 
